@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Lead from './model';
 import { createLeadSchema } from './lead.sanitize';
-import { AuthRequest } from '../../middlewares/auth'; 
+import { AuthRequest } from '../../middlewares/auth';
 
 
 export const createLead = async (req: AuthRequest, res: Response) => {
@@ -71,7 +71,10 @@ export const listLeads = async (req: AuthRequest, res: Response) => {
       page: Number(page),
       limit: Number(limit),
       sort: { createdAt: -1 },
-      populate: { path: "creator", select: "firstname lastname instituteId role" },
+      populate: [
+        { path: "creator", select: "firstname lastname instituteId role" },
+        { path: "institute", select: "name" }
+      ],
     };
 
     const result = await Lead.paginate(filter, options);

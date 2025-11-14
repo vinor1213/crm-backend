@@ -54,6 +54,13 @@ LeadSchema.virtual("creator", {
   justOne: true,
 });
 
+LeadSchema.virtual("institute", {
+  ref: "Institution",
+  localField: "instituteId",
+  foreignField: "instituteId",
+  justOne: true,
+});
+
 LeadSchema.pre<ILead>("save", async function (next) {
   if (!this.leadId) {
 

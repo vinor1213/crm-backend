@@ -11,7 +11,7 @@ import applicationRoutes from './modules/applications/routes';
 import permissionRoutes from './modules/permissions/routes';
 import settingsRoutes from './modules/settings/routes';
 import dashboardRoutes from './modules/dashboard/routes'
-
+import otpRoutes from './modules/otp/routes'
 import { logger } from './middlewares/logger';
 import dotenv from 'dotenv';
 
@@ -35,6 +35,7 @@ app.use('/api/login-histories', loginHistoryRoutes);
 app.use('/api/permissions', permissionRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/otp', otpRoutes);
 
 app.get('/', (req, res) => res.json({ ok: true, message: 'API Hika is running' }));
 
